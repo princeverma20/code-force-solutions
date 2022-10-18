@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+int const N = 1e5 + 10;
+
+int main()
+{
+  // your code goes here
+  int t;
+  cin >> t;
+  while (t--)
+  {
+    int n, q;
+    cin >> n >> q;
+    int a[n + 10];
+    int gf[n + 10];
+    int gb[n + 10];
+    gf[0] = gb[n + 1] = 0;
+    for (int i = 1; i <= n; i++)
+    {
+      cin >> a[i];
+      // gf[i] = __gcd(a[i], gf[i - 1]);
+    }
+    for (int i = 1; i <= n; i++)
+    {
+      gf[i] = __gcd(gf[i - 1], a[i]);
+    }
+    for (int i = n; i >= 1; i--)
+    {
+      gb[i] = __gcd(gb[i + 1], a[i]);
+    }
+    while (q--)
+    {
+      int x, y;
+      cin >> x >> y;
+      cout << __gcd(gf[x - 1], gb[y + 1]) << endl;
+    }
+  }
+  return 0;
+}
